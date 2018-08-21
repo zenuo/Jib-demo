@@ -10,26 +10,39 @@
 
     <description>Jib demo</description>
 
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.7.0</version>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>com.google.cloud.tools</groupId>
                 <artifactId>jib-maven-plugin</artifactId>
                 <version>0.9.8</version>
                 <configuration>
                     <from>
-                        <image>openjdk:8-jre</image>
+                        <image>azul/zulu-openjdk:8u181</image>
                     </from>
                     <to>
-                        <image>app-container</image>
+                        <image>jib-demo</image>
                     </to>
                     <container>
                         <jvmFlags>
-                            <jvmFlag>-Xms512m</jvmFlag>
+                            <jvmFlag>-Xms128m</jvmFlag>
                         </jvmFlags>
-                        <mainClass>itc.appcontainer.Application</mainClass>
+                        <mainClass>zenuo.demo.jib.Application</mainClass>
                         <ports>
-                            <port>8000</port>
+                            <port>8000/tcp</port>
                         </ports>
                     </container>
                     <allowInsecureRegistries>true</allowInsecureRegistries>
@@ -37,5 +50,13 @@
             </plugin>
         </plugins>
     </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-server</artifactId>
+            <version>9.4.11.v20180605</version>
+        </dependency>
+    </dependencies>
 
 </project>
